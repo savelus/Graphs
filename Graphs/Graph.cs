@@ -21,7 +21,7 @@ namespace Graphs
                 foreach (var node in nodes) yield return node;
             }
         }
-
+        public Node this[int index] { get { return nodes[index]; } }
     }
     class Node
     {
@@ -30,13 +30,17 @@ namespace Graphs
         {
             NodeNumber = Number;
         }
-        public List<Tuple<Node, int>> incidentNodes = new();
-        public IEnumerable<Tuple<Node, int>> IncidentNodes
+        public List<(Node, int)> incidentNodes = new();
+        public IEnumerable<(Node, int)> IncidentNodes
         {
             get
             {
                 foreach (var incidenNode in incidentNodes) yield return incidenNode;
             }
+        }
+        public override string ToString()
+        {
+            return NodeNumber.ToString();
         }
     }
 }

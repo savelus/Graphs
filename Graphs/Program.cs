@@ -6,7 +6,11 @@ namespace Graphs
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var gr = new Graph();
+            gr.Add();
+            gr.Add();
+            gr.Add();
+            gr[0].incidentNodes.Add((gr[1], 5));
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace Graphs
@@ -16,14 +16,15 @@ namespace Graphs
             gr[1].AddIncidentNode(gr[0], 3);
             gr[2].AddIncidentNode(gr[1], 4);
             //FileWorker<bool>.SaveGraph("graph.csv", gr);
-            //gr.DepthTraversal();
-            
+            DepthTraversal(gr);
+            BreadthTraversal(gr);
         }
 
-        public void DepthTraversal(Graph graph)
+        public static void DepthTraversal(Graph graph)
         {
+            var tempGraph = graph.Clone();
             var nodeStack = new Stack<Node>();
-            nodeStack.Push(graph[0]);
+            nodeStack.Push(tempGraph[0]);
             while (nodeStack.Count != 0)
             {
                 var tempNode = nodeStack.Pop();
@@ -36,13 +37,14 @@ namespace Graphs
                     nodeStack.Push(incidentNode.Item1);
                 }
             }
-            foreach (var node in graph.Nodes) node.isVisited = false;
+
         }
 
-        public void BreadthTraversal(Graph graph)
+        public static void BreadthTraversal(Graph graph)
         {
+            var tempGraph = graph.Clone();
             var nodeStack = new Queue<Node>();
-            nodeStack.Enqueue(graph[0]);
+            nodeStack.Enqueue(tempGraph[0]);
             while (nodeStack.Count != 0)
             {
                 var tempNode = nodeStack.Dequeue();
@@ -55,7 +57,7 @@ namespace Graphs
                     nodeStack.Enqueue(incidentNode.Item1);
                 }
             }
-            foreach (var node in graph.Nodes) node.isVisited = false;
+        }
         }
     }
 }

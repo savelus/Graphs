@@ -35,7 +35,25 @@ namespace Graphs
             }
             return matrix;
         }
-
+        public static Graph ConvertToGraph(int[,] matrix)
+        {
+            Graph graph = new();
+            for (int i = 0; i < matrix.GetLength(0); i++)
+            {
+                graph.Add();
+            }
+            for (int i = 0; i < graph.Count; i++)
+            {
+                for (int j = 0; j < matrix.GetLength(0); j++)
+                {
+                    if(matrix[i,j] != 0)
+                    {
+                        graph[i].AddIncidentNode(graph[j], matrix[i, j]);
+                    }
+                }
+            }
+            return graph;
+        }
         public Graph Clone()
         {
             Graph graph = new();

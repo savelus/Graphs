@@ -19,7 +19,9 @@ namespace Graphs
             //FileWorker<bool>.SaveGraph("graph.csv", gr);
             //DepthTraversal(gr);
             //BreadthTraversal(gr);
-            int x = GetMaximumFlow(gr);
+            //int x = GetMaximumFlow(gr);
+
+            var gr1 = Graph.ConvertToGraph(FileWorker.ReadMatrix("graph.csv"));
         }
 
         public static void DepthTraversal(Graph graph)

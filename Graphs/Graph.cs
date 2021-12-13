@@ -9,7 +9,7 @@ namespace Graphs
     class Graph
     {
         private readonly List<Node> nodes = new();
-        
+
         public void Add()
         {
             nodes.Add(new Node(nodes.Count));
@@ -35,7 +35,24 @@ namespace Graphs
             }
             return matrix;
         }
- 
+
+        public Graph Clone()
+        {
+            Graph graph = new();
+            foreach (var node in nodes)
+            {
+                graph.Add();
+            }
+            for (int i = 0; i < graph.Count; i++)
+            {
+                graph[i].isVisited = nodes[i].isVisited;
+                foreach (var incidentNode in nodes[i].IncidentNodes)
+                {
+                    graph[i].AddIncidentNode(graph[incidentNode.Item1.NodeNumber], incidentNode.Item2);
+                }
+            }
+            return graph;
+        }
     }
     class Node
     {
@@ -46,7 +63,7 @@ namespace Graphs
             NodeNumber = Number;
         }
 
-        private readonly List<(Node, int)> incidentNodes = new();
+        public  List<(Node, int)> incidentNodes = new();
         public void AddIncidentNode(Node node, int thickness)
         {
             incidentNodes.Add((node, thickness));
@@ -58,7 +75,7 @@ namespace Graphs
         {
             get
             {
-                foreach (var incidenNode in incidentNodes) yield return incidenNode;
+                foreach (var incidentNode in incidentNodes) yield return incidentNode;
             }
         }
 
